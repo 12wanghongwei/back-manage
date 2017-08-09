@@ -1,0 +1,154 @@
+<div *ngIf="data.length==0 || total==0" class="right" #div>
+    <table class="table table-bordered table-condensed" #table>
+        <thead>
+            <tr>
+                 <td colspan="100">
+                    <button *ngIf="addButton" type="button" class="btn btn-primary" (click)="open()"> <i  class="glyphicon glyphicon-plus"></i>&nbsp;添加</button>
+                    <button *ngIf="editButton" type="submit" class="btn btn-primary" (click)="btnEdit()"><i class="glyphicon glyphicon-edit"></i>&nbsp;编辑</button>
+                    <button *ngIf="deleteButton" type="button" class="btn btn-danger" (click)="deleteDatas()"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除</button>
+                    <button *ngIf="importButton" class="btn btn-success " (click)="importFile(filePath)"><span class="glyphicon glyphicon-import"></span>&nbsp;导入</button>
+                    <button *ngIf="exportButton" class="btn btn-primary " (click)="exportFile()"><span class="glyphicon glyphicon-export"></span>&nbsp;导出</button>
+                    <button *ngFor="let item of ButtonHeaders" class="btn" [ngStyle]="item.style" (click)="costomClick()">{{item.value}}</button>
+                </td>
+            </tr>
+            <tr>
+                <th *ngIf="isCheckBox"><input type="checkbox" [(ngModel)]="allChecked" (click)="selectedAll(input)" #input/></th>
+                <th *ngFor="let item of title">{{item}}</th>
+                <th *ngIf="isDetail">详情</th>
+                <th *ngIf="buttonList.length>0">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="100">
+                    <h1>没有数据</h1>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div *ngIf="data.length!=0 && total !=0" class="right" #div>
+
+    <table id="dt" *ngIf="paging" class="table table-bordered table-condensed" #table>
+        <thead>
+            <tr>
+                <td colspan="100">
+                    <button *ngIf="addButton" type="button" class="btn btn-primary" (click)="open()"> <i  class="glyphicon glyphicon-plus"></i>&nbsp;添加</button>
+                    <button *ngIf="editButton" type="submit" class="btn btn-primary" (click)="btnEdit()"><i class="glyphicon glyphicon-edit"></i>&nbsp;编辑</button>
+                    <button *ngIf="deleteButton" type="button" class="btn btn-danger" (click)="deleteDatas()"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除</button>
+                    <button *ngIf="importButton" class="btn btn-success " (click)="importFile(filePath)"><span class="glyphicon glyphicon-import"></span>&nbsp;导入</button>
+                    <button *ngIf="exportButton" class="btn btn-primary " (click)="exportFile()"><span class="glyphicon glyphicon-export"></span>&nbsp;导出</button>
+                    <button *ngFor="let item of ButtonHeaders" class="btn" [ngStyle]="item.style" (click)="costomClick()">{{item.value}}</button>
+                </td>
+            </tr>
+
+            <tr>
+                <th *ngIf="isCheckBox"><input type="checkbox" [(ngModel)]="allChecked" (click)="selectedAll(input)" #input/></th>
+                <th *ngFor="let item of title">{{item}}</th>
+                <th *ngIf="isDetail">详情</th>
+                <th *ngIf="buttonList.length>0">操作</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let item of data;let i = index">
+            <tr>
+                <td *ngIf="isCheckBox"><input type="checkbox" [(ngModel)]="checked[i]" (click)="select(i)" /></td>
+                <td *ngFor="let it of arr ;let j = index">
+                    <span *ngIf="!isLink[j]">{{item[it]}}</span>
+                    <a *ngIf="isLink[j]" (click)="linkClick(i)">{{item[it]}}</a>
+                </td>
+                <td *ngIf="isDetail"><span (click)="editClick(i,j,div)">详情</span></td>
+
+
+                <td *ngIf="buttonList.length>0">
+
+                    <a *ngFor="let btn of buttonList;let btnj = index" [ngStyle]="buttonstyle[btnj]" (click)="operatData(btne,i)" #btne>{{btn}}</a>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table *ngIf="!paging" class="table table-bordered table-condensed" #table>
+        <thead>
+            <tr>
+                <td colspan="100">
+                    <button *ngIf="addButton" type="button" class="btn btn-primary" (click)="open()"> <i  class="glyphicon glyphicon-plus"></i>&nbsp;添加</button>
+                    <button *ngIf="editButton" type="submit" class="btn btn-primary" (click)="btnEdit()"><i class="glyphicon glyphicon-edit"></i>&nbsp;编辑</button>
+                    <button *ngIf="deleteButton" type="button" class="btn btn-danger" (click)="deleteDatas()"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除</button>
+                    <button *ngIf="importButton" class="btn btn-success " (click)="importFile(filePath)"><span class="glyphicon glyphicon-import"></span>&nbsp;导入</button>
+                    <button *ngIf="exportButton" class="btn btn-primary " (click)="exportFile()"><span class="glyphicon glyphicon-export"></span>&nbsp;导出</button>
+                    <button *ngFor="let item of ButtonHeaders" class="btn" [ngStyle]="item.style" (click)="costomClick()">{{item.value}}</button>
+                </td>
+            </tr>
+            <tr>
+
+            </tr>
+            <tr>
+                <th *ngIf="isCheckBox"><input type="checkbox" [(ngModel)]="allChecked" (click)="selectedAll(input)" #input/></th>
+                <th *ngFor="let item of title">{{item}}</th>
+                <th *ngIf="isDetail">详情</th>
+                <th *ngIf="buttonList.length>0">操作</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let item of data;let i = index">
+            <tr *ngIf="i>=(page-1)*pageSize && i<page*pageSize ">
+                <td *ngIf="isCheckBox"><input type="checkbox" [(ngModel)]="checked[i]" (click)="select(i)" /></td>
+                <td *ngFor="let it of arr ;let j = index">
+                    <span *ngIf="!isLink[j]">{{item[it]}}</span>
+                    <a style="cursor:pointer" *ngIf="isLink[j]" (click)="linkClick(i)">{{item[it]}}</a>
+                </td>
+                <td *ngIf="isDetail"><span style="cursor:pointer;border-bottom:1px solid #00F; " (click)="editClick(i,j,div)">详情</span></td>
+                <td *ngIf="buttonList.length>0">
+
+                    <a style="margin-right: 5px;cursor:pointer" *ngFor="let btnname of buttonList;let btnj = index" [ngStyle]="buttonstyle[btnj]"
+                        (click)="operatData(btne,i)" #btne>{{btnname}}</a>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="dt-footer">
+        <ul class="pagination">
+
+            <li>
+                <a class="pagination-a-other">
+			<select [ngModel]="pageSize"  (ngModelChange)=" pageSize=$event;changePageSize()" >
+                <option *ngFor="let item of sizeList" >{{item}}</option>  
+            </select>
+		</a>
+            </li>
+            <li><a class="pagination-a" (click)="topPage()">首页</a></li>
+            <li *ngIf="page >1"><a class="pagination-a" (click)="previousPage()">上一页</a></li>
+            <li>
+                <a class="pagination-a-other">
+			<input #in  (keyup.enter)="changePage(in.value)"   (blur)="changePage(in.value)" value={{page}} />
+		</a>
+            </li>
+            <li *ngIf="page<totalPages"><a class="pagination-a" (click)="nextPage()">下一页</a></li>
+            <li><a class="pagination-a" (click)="endPage()">尾页</a></li>
+
+        </ul>
+        <p *ngIf=" page>0"><i>{{(page-1)*pageSize+1  }} </i>~<i> {{page*pageSize < total ? page*pageSize :total }} </i>条,总共<i>{{total}}条</i></p>
+    </div>
+</div>
+
+
+
+
+<div id="screen"></div>
+<div id="modal">
+
+</div>
+
+<div style="width:50%;margin:0px" id="file">
+
+    <div class="progress" style="width:100%;margin:0px">
+        <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%','margin':'0px' }"></div>
+    </div>
+
+</div>
+<div style="text-align:center;display:none">
+    <input #filePath name="filePath" value="导入" style="margin-left:100px;" type="file" ng2FileSelect [uploader]="uploader" (change)="fileChange()"
+    />
+</div>

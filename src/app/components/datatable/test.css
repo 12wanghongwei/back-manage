@@ -1,0 +1,78 @@
+
+
+ tr:hover {
+    background-color: #F5FAFE ;      
+}    
+
+ th {
+    background-color: #dce9f9 ;
+    border-top: 0px;
+    color:black;  
+} 
+tr{
+    border-top: 0px;
+} 
+
+
+/*锁屏遮罩*/
+#screen{
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:0;
+	filter:alpha(opacity=30);
+	opacity:0.3;
+	display:none;
+}
+
+
+#file {
+	border:1px solid #ccc;
+	text-align: center;
+	position:absolute;
+	display:none;
+	background:#dce9f9;
+}
+
+#modal{
+    border-radius: 10px;
+    
+}
+
+.pagination{
+    margin-top: 0px;
+}
+.pagination a{
+    cursor: pointer;
+}
+.pagination-a{
+    text-align: center;
+    padding: 4px;
+    height: 30px; 
+
+     
+}
+.pagination-a-other{
+    padding: 0px;
+    height: 30px;  
+
+}
+.pagination-a-other input,select{
+    margin:0px;
+    width:50px;
+    color:#0088CC;
+    text-align: center;
+    height:28px;
+    border: 0px; 
+    padding: 0;
+    
+}
+.dt-footer p{
+    float: right;
+}
+
+@media only screen and (max-width: 400px) {
+   .dt-footer p{
+    float: left;
+}
+}

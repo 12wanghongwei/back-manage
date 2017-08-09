@@ -1,0 +1,57 @@
+<p>我的表格</p>
+
+<div class="container" style="height:600px;width:50%"  >
+    <!--<div style="float:right">-->
+<data-grid    [title]="title" [page] ="page" [addButton]="'true'" [deleteButton]="'true'"[editButton]="'true'"
+ [url]="url" [sizeList]="sizeList" [paging]="paging" [pageSize]="pageSize" (editData)="edit($event)"></data-grid>
+</div>
+
+
+
+<div id="ng-modal">
+
+	<h2> <img src="src/imlages/close.png" alt="X" class="close" (click)="close()" />添加信息</h2>
+<div class ="content">
+<div class="user" *ngFor="let item of title,let i = index">{{item}}:  
+    <input type="text" name="user" class="text" [(ngModel)]="addInfo['className']"/>
+</div>	
+<div>
+    性别:
+  <select style="width:45px;height:28px"   >
+        <option id="male" >男</option>  
+        <option id="female" >女</option>
+    </select>
+</div>
+</div>
+
+
+
+
+	<button type="button" class="btn btn-lg" (click)="close()" font-size="12px">关闭</button>
+	<button type="button" class="btn btn-lg btn-primary" font-size="12px" (click)="save()">保存</button>
+
+</div>
+
+<!--<div barChart
+ [chartLabels]="charLabels"
+ [chartData]="chartData"
+ [chartType]="chartType"
+ [title]="title2"
+ [legend]="legend"
+ [chartColors]="chartColors"
+ (onLegendClick)="test($event)"
+  style="width:60%;height:400px;">
+</div>-->
+<!--<div pieChart style="width:60%;height:800px;">-->
+<echarts-barChart
+ [chartLabels]="charLabels"
+ [chartData]="chartData"
+ [chartType]="chartType"
+ [title]="title2"
+ [legend]="legend"
+ [chartColors]="chartColors"
+ (onLegendClick)="test($event)"
+  style="width:60%;height:400px;">
+</echarts-barChart>
+
+<div pieChart (onLegendClick)="test($event)" style="width:60%;height:800px;"></div>

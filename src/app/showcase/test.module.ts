@@ -6,8 +6,8 @@ import { RouterModule } from '@angular/router';
 import { HttpModule} from '@angular/http';
 
 //测试封装好的组件和本地组件
-// import {  DataTableModule} from 'ng-itoo-datatable';
-import { DataTableModule } from '.././components/datatable/datatable.module';
+import {  DataTableModule} from 'ng-itoo-datatable';
+// import { DataTableModule } from '.././components/datatable/datatable.module';
 
 import { TestComponent} from './test.component';
 import {testRoutes } from './test.routes';

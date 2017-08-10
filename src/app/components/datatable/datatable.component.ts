@@ -9,7 +9,7 @@ import { FileUploader } from 'ng2-file-upload';
 @Component({
   selector: 'data-table',
   // templateUrl: 'test.html',
-   templateUrl:'datatable.component.html',
+  templateUrl: 'datatable.component.html',
   styleUrls: ['./datatable.component.css']
   // styleUrls:['./test.css']
 })
@@ -64,11 +64,12 @@ export class DataTableComponent implements OnInit, DoCheck, OnChanges {
   ) { }
 
   ngOnInit() {
-   
+
   }
   //改变fileUrl，即可刷新页面数据
   ngOnChanges() {
     this.totalPages = Math.ceil(this.total / this.pageSize);
+
   }
 
 
@@ -145,7 +146,6 @@ export class DataTableComponent implements OnInit, DoCheck, OnChanges {
         let content = document.getElementById("file").style.display = "none";
       }
       if (this.uploader.queue[0].isSuccess) {
-        console.log(this.uploader.queue.length);
         alert("成功");
         this.uploader.progress = 0;
         this.uploader.queue.length = 0;
@@ -178,10 +178,11 @@ export class DataTableComponent implements OnInit, DoCheck, OnChanges {
       this.changepage.emit(data);
     }
   }
-  disposeChecked(){
+  disposeChecked() {
     this.allChecked = false;
-    for(let i=0;i<this.data.length;i++){
-        this.checked[i] = false;
+    this.checked.length = this.data.length;
+    for (let i = 0; i < this.data.length; i++) {
+      this.checked[i] = false;
     }
   }
 
@@ -257,12 +258,11 @@ export class DataTableComponent implements OnInit, DoCheck, OnChanges {
 
   //删除选中的数据
   deleteDatas(tbody: HTMLElement) {
-    console.log(tbody);
+
     let isDelete = false;
     let ids = new Array<string>();
     let dataCount = new Array();
-    console.log(this.checked);
-    
+
     for (let j = 0; j < this.checked.length; j++) {
       if (this.checked[j]) {
         dataCount.push(j);
@@ -274,7 +274,7 @@ export class DataTableComponent implements OnInit, DoCheck, OnChanges {
       return;
     }
     this.disposeChecked();
-    
+
     this.deletesEmit.emit(dataCount);
   }
 
@@ -284,32 +284,28 @@ export class DataTableComponent implements OnInit, DoCheck, OnChanges {
 
   //操作列触发事件
   operatData(e: HTMLElement, i: number) {
-    let index:number ;
-    if(this.paging){
-        index = i;
-    }else{
-    index = (this.page - 1) * this.pageSize + i;   
+    let index: number;
+    if (this.paging) {
+      index = i;
+    } else {
+      index = (this.page - 1) * this.pageSize + i;
     }
     let data = {
-      "data":index,
+      "data": index,
       "element": e
     }
-    console.log(this.checked);
-
     this.checked[index] = false;
-    console.log(this.checked);
-    
     this.operat.emit(data);
   }
 
   //链接列触发事件
   linkClick(i: number) {
-     let index:number ;
-    if(this.paging){
-        index = i;
-    }else{
-    index = (this.page - 1) * this.pageSize + i;
-        
+    let index: number;
+    if (this.paging) {
+      index = i;
+    } else {
+      index = (this.page - 1) * this.pageSize + i;
+
     }
     this.linkClickEmitData.emit(i);
   }
@@ -319,27 +315,21 @@ export class DataTableComponent implements OnInit, DoCheck, OnChanges {
   }
   //全选checkbox
   selectedAll(e: HTMLInputElement) {
-    this.checked.length = 0;
-    let start:number;
-    let end :number;
-    if(this.paging){
-       start = 0;
-       end = this.pageSize-1;
-    }else{
-     start = (this.pageSize*(this.page-1));
-     end =(this.pageSize* (this.page)-1);
-    }
-    
-    if (e.checked) {
-      for (let i = start; i <= end; i++) {
-        this.checked[i] = true;
-      }
-
+    let start: number;
+    let end: number;
+    if (this.paging) {
+      start = 0;
+      end = this.data.length;
     } else {
-     for (let i = start; i <= end; i++) {
-        this.checked[i] = false;
-      }
+      start = (this.page-1) * this.pageSize;
+      //enditem 当前页的最后一条记录
+      let enditem: number = (this.page) * this.pageSize
+      end = enditem >= this.data.length ? this.data.length : enditem;
     }
+    for (let i = start; i < end; i++) {
+      this.checked[i] = e.checked;
+    }
+
   }
 
 

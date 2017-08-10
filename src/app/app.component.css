@@ -1,3 +1,15 @@
+/*
+layout-topbar顶部导航栏
+.topbar-menu 导航栏右侧
+
+
+
+*/
+
+
+
+
+
 li{
     list-style: none;
 }
@@ -55,59 +67,6 @@ li{
 }
 
 
-@media screen and (max-width: 64em) {
-    #layout-topbar {
-        text-align: center;
-    }
-    
-    #layout-topbar .menu-button {
-        display: inline-block;
-    }
-    
-    #layout-topbar .logo {
-        margin: 7px 0 7px 0;
-
-    }
-    
-    /*//TODO:*/
-    .topbar-menu {
-        background-color: #222222; 
-        float: none;
-        width: 100%;
-        height: 40px;
-        margin: 0;
-        text-align: center;
-    }
-    
-    .topbar-menu > li > a {
-        padding-bottom: 0;
-        line-height: 40px;
-        min-width: 100px;
-        color:#fff;
-    }
-    
-    .topbar-menu > li.topbar-menu-themes > ul {
-        top: 40px;
-    }
-
-       #layout-sidebar {
-        top: 100px;
-        left: -300px;
-        transition: left .3s;  
-        z-index: 999998;
-    }
-      #layout-sidebar.active {
-        left: 0;
-    }
-     #layout-content {
-        margin-left: 0;
-        padding-top: 100px;
-    }
-    
-    .topbar-menu > li.topbar-menu-themes > ul {
-        text-align: left;
-    }
-}
 
 
 .topbar-menu {
@@ -215,6 +174,7 @@ li{
     }
 
 /* Sidebar */
+/*固定左侧栏*/
 #layout-sidebar {
     position: fixed;
     left: 0;
@@ -287,6 +247,7 @@ li{
     background-color: #EEEEEE; /*控制子菜单的北京颜色*/
 }
 
+/*控制子菜单隐藏，过渡效果*/
 #layout-sidebar .layout-menu > div.submenuhide {
     overflow: hidden;
     max-height: 0;
@@ -294,18 +255,19 @@ li{
     padding-bottom: 0;
     margin-top: 0;
     margin-bottom: 0;
-    -moz-transition-duration: 0.3s;
+     -moz-transition-duration: 0.3s;
     -webkit-transition-duration: 0.3s;
     -o-transition-duration: 0.3s;
     transition-duration: 0.3s;
-    -moz-transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+  -moz-transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
     -webkit-transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
     -o-transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
     transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
 }
 
+/*控制子菜单显示，过渡效果*/
 #layout-sidebar .layout-menu > div.submenushow {
-    -moz-transition-duration: 0.3s;
+       -moz-transition-duration: 0.3s;
     -webkit-transition-duration: 0.3s;
     -o-transition-duration: 0.3s;
     transition-duration: 0.3s;
@@ -315,10 +277,12 @@ li{
     transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
     max-height: 500px;
 }
+
 #layout-sidebar .layout-menu > div ul{
     padding-left: 10px;
     margin-top:2px;
 }
+
 #layout-sidebar .layout-menu > div li:hover{
         background-color: #fff;
 }
@@ -329,8 +293,9 @@ li{
       
 }
 
+/*TODO:对a的宽度不起作用*/
 #layout-sidebar .layout-menu > div a {
-    width: 50%;
+    width: 50%;   
     padding: 6px;
     box-sizing: border-box;
     cursor: pointer;
@@ -357,6 +322,7 @@ li{
 #layout-content {
     margin-left: 300px;
     padding-top: 70px;
+    margin-bottom: 100px;
     background-color: #ffffff;
 }
 
@@ -365,32 +331,87 @@ li{
     }
 
 
+
+/*当屏幕变小时，主页发生变化*/
+@media screen and (max-width: 64em) {
+    #layout-topbar {
+        text-align: center;
+    }
+    
+    #layout-topbar .menu-button {
+        display: inline-block;
+    }
+    
+    #layout-topbar .logo {
+        margin: 7px 0 7px 0;
+
+    }
+    
+    /*//TODO:*/
+    .topbar-menu {
+        background-color: #222222; 
+        float: none;
+        width: 100%;
+        height: 40px;
+        margin: 0;
+        text-align: center;
+    }
+    
+    .topbar-menu > li > a {
+        padding-bottom: 0;
+        line-height: 40px;
+        min-width: 100px;
+        color:#fff;
+    }
+    
+    .topbar-menu > li.topbar-menu-themes > ul {
+        top: 40px;
+    }
+
+       #layout-sidebar {
+        top: 100px;
+        left: -300px;
+        transition: left .3s;  
+        z-index: 999998;
+    }
+      #layout-sidebar.active {
+        left: 0;
+    }
+     #layout-content {
+        margin-left: 0;
+        padding-top: 100px;
+    }
+    
+    .topbar-menu > li.topbar-menu-themes > ul {
+        text-align: left;
+    }
+}
+
+
+
+.layout-footer {
+    font-size: 14px;
+    color: #84939f;
+    bottom: 0;
+    width:100%;
+    text-align: center;
+
+  
+}
+.footer-span{
+    font-size: 16px;
+    
+}
+
 .layout-footer .footer-links {
     float: right;
     font-size: 24px;
+    margin-right: 40px;
+    
 }
 
 .layout-footer .footer-links a {
     color: #000000;
     margin-left: 16px;
 }
-.first{
-	margin-left: 10px;
-	padding-left: 0;
-}
-.first li{
-	list-style: none;
-}
-.first a{
-	font-size: 1.2em;
-}
 
-.container-fluid{
-	margin-top:20px;
-	
-}
-
-.col-md-2{
-    background: #ccc;
-		height:1000px;
-}

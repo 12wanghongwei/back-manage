@@ -1,57 +1,72 @@
-<p>我的表格</p>
+<div class="layout-wrapper">
+        <div id="layout-topbar">
+            <a href="#" class="menu-button" (click)="onMenuButtonClick($event)">
+            <i class="fa fa-bars"></i>
+        </a>
 
-<div class="container" style="height:600px;width:50%"  >
-    <!--<div style="float:right">-->
-<data-grid    [title]="title" [page] ="page" [addButton]="'true'" [deleteButton]="'true'"[editButton]="'true'"
- [url]="url" [sizeList]="sizeList" [paging]="paging" [pageSize]="pageSize" (editData)="edit($event)"></data-grid>
+            <a href="#" class="logo" [routerLink]="['/']">
+            大米时代信息
+            </a>
+
+            <ul class="topbar-menu">
+                <li>
+                    <a href="https://angular.io/docs">angular2</a>
+                </li>
+
+                <li>
+                    <a href="https://git.oschina.net/mumu-osc/NiceFish/">help</a>
+                </li>
+            </ul>
+        </div>
+
+        <div id="layout-sidebar" [ngClass]="{'active': menuActive}"  >
+            <div class="layout-menu" (mouseleave)="hiddenSidebar($event)">
+                <a id="menu_input" #menu1 [class.active-menuitem]="menu1.id == activeMenuId" (click)="activeMenuId = (activeMenuId === menu1.id ? null : menu1.id)">
+            
+                <span>测试管理</span>
+            </a>
+                <div [ngClass]="{submenushow: (menu1.id == activeMenuId), 'submenuhide': (menu1.id != activeMenuId)}">
+                    <ul>
+                        <li><a href="#" [routerLink]="['showcase/datatable']">测试表格</a></li>
+                        <li><a href="#" [routerLink]="['showcase/backtest']">后台服务测试</a></li>
+                        <li><a href="javascript:void(0)"  >后台服务测试</a></li>
+                    </ul>
+                </div>
+                  <a id="menu2" #menu2 [class.active-menuitem]="menu2.id == activeMenuId" (click)="activeMenuId = (activeMenuId === menu2.id ? null : menu2.id)">
+            
+                <span>测试管理</span>
+            </a>
+                <div [ngClass]="{submenushow: (menu2.id == activeMenuId), 'submenuhide': (menu2.id != activeMenuId)}">
+                    <ul>
+                        <li><a href="#" [routerLink]="['showcase/datatable']">测试表格</a></li>
+                        <li><a href="#" [routerLink]="['showcase/backtest']">后台服务测试</a></li>
+                        <li><a href="javascript:void(0)"  >后台服务测试</a></li>
+                    </ul>
+                </div>
+                <!--<ul >
+            <li><a href="#" [routerLink]="['showcase/datatable']">测试表格</a></li>
+            <li><a href="#" [routerLink]="['showcase/backtest']">后台服务测试</a></li>
+            </ul>-->
+
+            </div>
+        </div>
+        <div id="layout-content">
+            <div>
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+          
+
+      
 </div>
-
-
-
-<div id="ng-modal">
-
-	<h2> <img src="src/imlages/close.png" alt="X" class="close" (click)="close()" />添加信息</h2>
-<div class ="content">
-<div class="user" *ngFor="let item of title,let i = index">{{item}}:  
-    <input type="text" name="user" class="text" [(ngModel)]="addInfo['className']"/>
-</div>	
-<div>
-    性别:
-  <select style="width:45px;height:28px"   >
-        <option id="male" >男</option>  
-        <option id="female" >女</option>
-    </select>
-</div>
-</div>
-
-
-
-
-	<button type="button" class="btn btn-lg" (click)="close()" font-size="12px">关闭</button>
-	<button type="button" class="btn btn-lg btn-primary" font-size="12px" (click)="save()">保存</button>
+  <nav class="navbar navbar-default navbar-fixed-bottom">
+                 <div class="content-section layout-footer clearfix">
+               
+            <div class="footer-links">
+                      <span class="footer-span" >@分享是一种理念</span><a href="https://github.com/ledary/back-manage"><i class="fa fa-github"></i></a>
+            <div>
+        </div>
+    </div>
 
 </div>
-
-<!--<div barChart
- [chartLabels]="charLabels"
- [chartData]="chartData"
- [chartType]="chartType"
- [title]="title2"
- [legend]="legend"
- [chartColors]="chartColors"
- (onLegendClick)="test($event)"
-  style="width:60%;height:400px;">
-</div>-->
-<!--<div pieChart style="width:60%;height:800px;">-->
-<echarts-barChart
- [chartLabels]="charLabels"
- [chartData]="chartData"
- [chartType]="chartType"
- [title]="title2"
- [legend]="legend"
- [chartColors]="chartColors"
- (onLegendClick)="test($event)"
-  style="width:60%;height:400px;">
-</echarts-barChart>
-
-<div pieChart (onLegendClick)="test($event)" style="width:60%;height:800px;"></div>
+            </nav>

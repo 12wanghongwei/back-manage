@@ -10,17 +10,17 @@
 
             <ul class="topbar-menu">
                 <li>
-                    <a href="javascript:void(0)">angular2</a>
+                    <a href="https://angular.io/docs">angular2</a>
                 </li>
 
                 <li>
-                    <a href="javascript:void(0)">help</a>
+                    <a href="https://git.oschina.net/mumu-osc/NiceFish/">help</a>
                 </li>
             </ul>
         </div>
 
         <div id="layout-sidebar" [ngClass]="{'active': menuActive}"  >
-            <div class="layout-menu" (mouseleave)="test($event,sidebar)" #sidebar>
+            <div class="layout-menu" (mouseleave)="hiddenSidebar($event)">
                 <a id="menu_input" #menu1 [class.active-menuitem]="menu1.id == activeMenuId" (click)="activeMenuId = (activeMenuId === menu1.id ? null : menu1.id)">
             
                 <span>测试管理</span>
@@ -54,11 +54,18 @@
             <div>
                 <router-outlet></router-outlet>
             </div>
-            <nav class="navbar navbar-default navbar-fixed-bottom">
-                <div class="container">
-                    dfdfdf
-                </div>
-            </nav>
-
         </div>
+          
+
+      
 </div>
+  <nav class="navbar navbar-default navbar-fixed-bottom">
+                 <div class="content-section layout-footer clearfix">
+            <div class="footer-links">
+                <a href="https://github.com/ledary/back-manage"><i class="fa fa-github"></i></a>
+            <div>
+        </div>
+    </div>
+
+</div>
+            </nav>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { BaseService } from '../util/baseservice';
 
-const  url = "src/data/data-grid.json";
+const  url = "src/data/datatable/data-table.json";
 @Component({
   selector: 'table-test',
   templateUrl: './datatabledemo.component.html',
@@ -24,11 +24,11 @@ export class DataTableDemo implements OnInit {
   btnDelete:boolean  = true;
   btnImport:boolean  = true;
   btnExport:boolean = true;
-  btnList: string[] = ["启用","编辑","删除"];
+  btnList: string[] = ["启用"];
   title = ['班号', '年级', '地址', '标记', 'mark'];
   arrbutes = ["classCode", "gradeId", "className", "remark", "address"];
   isLink = [true, true, false, false, false];
-  paging:boolean = true;
+  paging:boolean = false;
   data = new Array();
   total: number;
   pageSize = 10;
@@ -67,15 +67,13 @@ export class DataTableDemo implements OnInit {
    * @param data 真分页情况下，页号，页大小改变就会查询后台的数据。
    */
   changepage(data: any) {
-    console.log(data);
-    let url = "src/data/data-grid.json" + "\n页号page: " + data.page + "\n页大小pageSize:" + data.pageSize + "\n总页数totalPages:" + data.totalPages;
+
+    let url = "src/data/datatable/data-table.json" + "\n页号page: " + data.page + "\n页大小pageSize:" + data.pageSize + "\n总页数totalPages:" + data.totalPages;
     alert(url);
-    let dataurl = "src/data/data-test.json";
+    let dataurl = "src/data/datatable/data-test.json";
     this.ds.getData(dataurl,"GET").then(
       res => {
-
         this.data = res.data
-        console.log(this.data);
         this.total = res.total;
       }
     )
@@ -89,6 +87,7 @@ export class DataTableDemo implements OnInit {
    */
   deleteDatas(el:any) {
     alert(el);
+    alert(this.data.length);
     for(let i =0; i<el.length;i++){
          this.data.splice(el[i]-i,1);  
          this.total--;
@@ -117,8 +116,7 @@ export class DataTableDemo implements OnInit {
    * @param obj 自定义操作列方法
    */
   operatData(obj: any) {
-    console.log(obj);
-    console.log(obj.element);
+
    
 
     switch (obj.element.innerText) {

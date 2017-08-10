@@ -1,4 +1,7 @@
 
+#author
+Chinese: 12期武刚鹏
+English: ledary
 
 #项目结构说明
 components是做好的组件，以及一些研究的内容
@@ -25,11 +28,8 @@ primeNG封装库 :https://github.com/primefaces/primeng
 NiceFish所有项目地址： https://git.oschina.net/mumu-osc/NiceFish-Admin
 
 
-#author
-name: ledary
-email:15732622312@163.com
 
-# 项目名称
+# Anguarl2Input
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
 
 ## 启动程序

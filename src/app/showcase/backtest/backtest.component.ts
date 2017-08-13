@@ -86,7 +86,8 @@ export class BackTestComponent implements OnInit {
   del() {
     let delstr = "0044fbbe28c254673bc37a";
     // let url = this.backurl +"deleteById/id/"+delstr;
-    let url = this.backurl + "deleteById/id";
+    // let url = this.backurl + "deleteById/id";
+    let url ="http://192.168.22.153:8082/singleTableMaintain-web/convention/deleteContventionById"
     let back = new Entity();
     back.id = delstr;
     back.classCode = ""

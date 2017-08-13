@@ -8,19 +8,23 @@ import { HttpModule} from '@angular/http';
 //测试封装好的组件和本地组件
 import {  DataTableModule} from 'ng-itoo-datatable';
 // import { DataTableModule } from '.././components/datatable/datatable.module';
+import { ComponentModule } from '.././components/component.module';
+
 
 import { TestComponent} from './test.component';
 import {testRoutes } from './test.routes';
 import {BaseService } from './util/baseservice';
 import {DataTableDemo  } from './datatabledemo/datatabledemo.component';
 import { BackTestComponent }  from './backtest/backtest.component';
+import { DropDownDemoComponent } from './drop-down-demo/drop-down-demo.component';
 
 
 @NgModule({
   declarations: [
     TestComponent,
     DataTableDemo,
-    BackTestComponent
+    BackTestComponent,
+    DropDownDemoComponent
   ], 
 
   imports: [
@@ -28,6 +32,7 @@ import { BackTestComponent }  from './backtest/backtest.component';
     FormsModule,
     HttpModule,
     DataTableModule,
+    ComponentModule,
     RouterModule.forChild(testRoutes)
     
 

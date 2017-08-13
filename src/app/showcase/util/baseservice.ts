@@ -35,6 +35,7 @@ export class BaseService {
 
     //调用远程地址，获取数据 get方法
   public getGetData(url: string): Promise<any> {
+    alert(url);
     return this.http
       .get(url)
       .toPromise()
